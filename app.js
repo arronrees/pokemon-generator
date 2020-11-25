@@ -58,13 +58,39 @@ function init() {
   nextBtn.textContent = 'Next';
   buttons.appendChild(nextBtn);
 
-  nextBtn.addEventListener('click', nextPokemon);
-  prevBtn.addEventListener('click', prevPokemon);
-  randomBtn.addEventListener('click', randomPokemon);
+  // Hover and click styles to buttons
+  function btnHover(e) {
+    e.target.classList.add('btnClick');
+  }
 
+  nextBtn.addEventListener('mouseover', btnHover);
+  prevBtn.addEventListener('mouseover', btnHover);
+  randomBtn.addEventListener('mouseover', btnHover);
+  loadBtn.addEventListener('mouseover', btnHover);
+
+  function btnClick(e) {
+    e.target.classList.remove('btnClick');
+  }
+
+  nextBtn.addEventListener('click', (e) => {
+    nextPokemon();
+    btnClick(e);
+  });
+  prevBtn.addEventListener('click', (e) => {
+    prevPokemon();
+    btnClick(e);
+  });
+  randomBtn.addEventListener('click', (e) => {
+    randomPokemon();
+    btnClick(e);
+  });
+
+  // Current pokemon
   let current = 1;
 
-  loadBtn.addEventListener('click', () => {
+  // Load button to generate first pokemon
+  loadBtn.addEventListener('click', (e) => {
+    btnClick(e);
     loadDone();
     generatePokemon();
   });
