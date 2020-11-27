@@ -107,15 +107,15 @@ function init() {
   }
 
   // Generates pokemon html details
-  function generatePokemon() {
-    getPokemonData().then((data) => {
-      pokemonImg.src = data.sprites.other.dream_world.front_default;
-      pokemonImg.alt = data.name;
-      number.innerHTML = `<h2>${data.id}</h2>`;
-      name.innerHTML = `<h1>${data.name}</h1>`;
-      abilities.innerHTML = `<div>${data.abilities[0].ability.name}</div>
-                          <div>${data.abilities[1].ability.name}</div>`;
-    });
+  async function generatePokemon() {
+    const data = await getPokemonData();
+
+    pokemonImg.src = data.sprites.other.dream_world.front_default;
+    pokemonImg.alt = data.name;
+    number.innerHTML = `<h2>${data.id}</h2>`;
+    name.innerHTML = `<h1>${data.name}</h1>`;
+    abilities.innerHTML = `<div>${data.abilities[0].ability.name}</div>
+                        <div>${data.abilities[1].ability.name}</div>`;
   }
 
   // Button functions to cycle through pokemon
